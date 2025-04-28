@@ -1,0 +1,210 @@
+'use strict';
+
+// Don't forget the 4 steps of problem solving
+
+// 1 : Write a code that once the player clicks on .btn--roll, It generates a number between 1 and 6 (.player--0 is always first thanks to .player--active)|Done
+
+// 1.1 : Depending on the generated number, the src of .dice is changed to reflect the number, And if it's the first time that the player clicked .btn--roll, Then .dice 
+// becomes visible|Done
+
+// 1.2 : A number equivalent to the generated number is added to the #current--0 or #current--1 tag (Depending on which player has active--player).|Done
+
+// 1.3 : Write a code so that if the player decides to hold their score, Then #current--0 or #current--1 (Depending on the player) is added score--0 or score--1 
+// (Depending on the player), If their score--0 or score--1 is greater or equal to 100, That player wins (By giving that user the .player--winner class name), And the game
+// is finished (They won't be able to click on .btn--roll and .btn--hold anymore) If not, the .player--active is taken from the current player, And given to other player
+
+// 1.4 : Write a condition for the generated number, So that IF the generated number is 1, Then the #score--0 or #score--1 (Depending on which player rolled) is set back 
+// to 0, And it becomes the turn of the other player to roll 
+
+// Pre-Refactoring
+// The tag that shows the generated number
+const dice = document.querySelector(`.dice`)
+
+// Disappearing the tag on when the players have just started the game
+dice.style.display = `none`
+
+// The button tag that generates the number
+const roll_button = document.querySelector(`.btn--roll`)
+
+// player 0
+const player_0 = document.querySelector(`.player--0`)
+
+// Score of player 0
+const score_0 = document.querySelector(`#score--0`)
+// Setting the score of player 0 to 0
+score_0.textContent = `0`
+
+// Storing the text content of the score of player 0 in a variable for mathematic operations
+var score_0_Math = Number(score_0.textContent)
+
+// The current score of player 0
+const currentScore_0 = document.querySelector(`#current--0`)
+// Setting the current score of player 0 to 0
+currentScore_0.textContent = `0`
+
+// Storing the text content of the current score of player 0 in a variable for mathematic operations
+var currentScore_0_Math = Number(currentScore_0.textContent)
+
+// player 1
+const player_1 = document.querySelector(`.player--1`)
+
+// Score of player 1
+const score_1 = document.querySelector(`#score--1`)
+// Setting the score of player 1 to 0
+score_1.textContent = `0`
+
+// Storing the text content of the score of player 1 in a variable for mathematic operations
+var score_1_Math = Number(score_1.textContent)
+
+// The current score of player 1
+const currentScore_1 = document.querySelector(`#current--1`)
+// Setting the current score of player 1 to 0
+currentScore_1.textContent = `0`
+
+// Storing the text content of the current score of player 1 in a variable for mathematic operations
+var currentScore_1_Math = Number(currentScore_1.textContent)
+
+
+// Changing the active player from player 0 to player 1
+function player_0_1(){
+    // Taking the player--active from player 0
+    player_0.classList.remove(`player--active`)
+
+    // Changing the active player to player 1
+    player_1.classList.add(`player--active`)
+}
+
+// Changing the active player from player 1 to player 0
+function player_1_0(){
+    // Taking the player--active from player 0
+    player_1.classList.remove(`player--active`)
+
+    // Changing the active player to player 1
+    player_0.classList.add(`player--active`)
+}
+
+
+// Making it so that if the player clicks on roll_button, A number between 1 and 6 is generated and .dice is made visible
+roll_button.addEventListener(`click`, function(){
+
+    // Stopping our code, If a winner was found
+    if(player_0.classList.contains(`player--winner`)||player_1.classList.contains(`player--winner`)){
+        return;
+    }
+
+    // Generating a number between 1 and 6
+    let dice_number = Math.trunc(Math.random() * 6 + 1)
+
+    // Changing the display: value of .dice to so it appears once the player clicks  .roll_button
+    dice.style.display = `inline`
+
+    // Changing the src="" address of the dice so that it shows the image relevant to the generated number
+    dice.src = `dice-${dice_number}.png`
+
+    // Detemining which player is the one rolling (This bit of code might need Refactoring)
+    // If player_0 or player_1 or is rolling
+    if(player_0.classList.contains(`player--active`)||player_1.classList.contains(`player--active`)){
+        
+        // Adding the randomly generated number to the current score of player
+        player_0.classList.contains(`player--active`) ? currentScore_0_Math += dice_number : currentScore_1_Math += dice_number
+
+        // Setting the value of currentScore_0_Math or currentScore_1_Math as the text content of currentScore_0 or currentScore_1
+        player_0.classList.contains(`player--active`) ? currentScore_0.textContent = currentScore_0_Math : currentScore_1.textContent = currentScore_1_Math
+
+        // If player rolls a 1
+        if(dice_number === 1){
+
+            // Setting the current score of player to 0
+            player_0.classList.contains(`player--active`) ? currentScore_0.textContent = `0` : currentScore_1.textContent = `0`
+
+            // Setting the stored value of the math version of Player's current score to 0, To prevent a bug
+            player_0.classList.contains(`player--active`) ? currentScore_0_Math = 0 : currentScore_1_Math = 0
+
+            // Taking the player--active
+            player_0.classList.contains(`player--active`) ? player_0_1() : player_1_0()
+
+        }
+
+    }
+
+})
+
+
+// The .btn--hold button
+const hold_button = document.querySelector(`.btn--hold`)
+
+// Clicking on the hold_button
+hold_button.addEventListener(`click`, function(){
+
+    // Stopping our code, If a winner was found
+    if(player_0.classList.contains(`player--winner`)||player_1.classList.contains(`player--winner`)){
+        return;
+    }
+
+    // If player 0 or Player 1 is the one pressing the one
+    if(player_0.classList.contains(`player--active`) || player_1.classList.contains(`player--active`)){
+
+        // Adding the Math version of player's current score to the Math version of player's score
+        player_0.classList.contains(`player--active`) ? score_0_Math += currentScore_0_Math : score_1_Math += currentScore_1_Math
+
+        // Setting score_0_Math or score_1_Math as the the text content of score_0 or score_1
+        player_0.classList.contains(`player--active`) ? score_0.textContent = score_0_Math :  score_1.textContent = score_1_Math
+
+        // If the score is greater or equal to 100
+        if(score_0_Math >= 100 || score_1_Math >= 100){
+            // Declaring the winner
+            score_0_Math >= 100 ? player_0.classList.add(`player--winner`) : player_1.classList.add(`player--winner`)
+
+            // Taking the player--active from the players
+            score_0_Math >= 100 ? player_0.classList.remove(`player--active`) : player_1.classList.remove(`player--active`)
+
+            return
+        }
+
+        // Setting the current score of player to 0
+        player_0.classList.contains(`player--active`) ? currentScore_0.textContent = `0` : currentScore_1.textContent = `0`
+
+        // Setting the stored value of the Math version of Player 0's or Player 1's current score to 0, To prevent a bug
+        player_0.classList.contains(`player--active`) ? currentScore_0_Math = 0 : currentScore_1_Math = 0
+
+        // Taking the player--active from the player
+        player_0.classList.contains(`player--active`) ? player_0_1() : player_1_0()
+
+    }
+    
+})
+
+function zeroStr(...elements) {
+    elements.forEach(element => element.textContent = "0");
+}
+
+function zeroMaker(...elements){
+    elements.forEach(element => element.textContent = 0);
+}
+
+// The button responsible for resetting the game (Everything must be above this code so JS can read it properly)
+const reset = document.querySelector(`.btn--new`)
+
+// Restting everything once the player clicks on the reset button (Must be below everything)
+reset.addEventListener(`click`, function(){
+    // Reseting the text content of score_0, currentScore_0, score_1 and currentScore_1 to 0
+    zeroStr(score_0, currentScore_0, score_1, currentScore_1)
+
+    // Resetting stored value of .score_0_Math, currentScore_0_Math, score_1_Math, currentScore_1_Math to 0
+    zeroMaker(score_0_Math, currentScore_0_Math, score_1_Math, currentScore_1_Math)
+
+    // If any of the players have won
+    if(player_0.classList.contains(`player--winner`)||player_1.classList.contains(`player--winner`)){
+        
+        // Removing .player--winner from the players
+        player_0.classList.contains(`player--winner`) ? player_0.classList.remove(`player--winner`) : player_1.classList.remove(`player--winner`)
+
+    }
+
+    // Giving player--active back to player_0
+    player_0.classList.add(`player--active`)
+
+    // Taking player--active from player_1
+    player_1.classList.remove(`player--active`)
+
+})
