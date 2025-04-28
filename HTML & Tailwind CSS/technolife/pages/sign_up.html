@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تکنولایف - ورود/ثبت نام</title>
+    <link rel="stylesheet" href="../assets/css/input.css">
+    <link rel="stylesheet" href="../assets/css/output.css">
+
+</head>
+<body class=""> 
+
+
+    <section class="flex justify-center 
+    lg:absolute lg:left-[50%] lg:translate-x-[-50%]  lg:top-[50%] lg:translate-y-[-50%]
+    w-full lg:w-[420px] h-[100vh] 
+    pr-4 pl-4 lg:pr-2 lg:pl-2">
+        <form action="#" method="get" class="flex flex-col justify-between lg:justify-start gap-[62px]
+        w-full h-[100vh] ">
+
+            <!-- Top -->
+            <div class="pt-8 lg:pt-[100px] flex flex-col items-center">
+    
+                <!-- Website Icon -->
+                <div class="w-[132px] lg:w-[182px]">
+                    <a href="../index.html" class="w-full">
+                        <img src="../assets/img/website_logo.svg" alt="Technolife Icon" class="w-full">
+                    </a>
+                </div>
+
+                <!-- The form holder -->
+                <div class="mt-8 mb-[55px] flex flex-col gap-[55px] w-full">
+
+                    <!-- The texts -->
+                    <div class="text-[#000] font-semibold
+                    flex flex-col items-center gap-4 lg:gap-[42px]">
+
+                        <div class="text-[16px] lg:text-[22px]
+                        flex items-center gap-[0.75rem]">
+                            
+                            
+                            <span>ورود</span>
+                        
+                            <!-- Splitting Line -->
+                            <div class="border-l border-[#333] h-full"></div>
+
+                            <span>ثبت نام</span>
+
+                        </div>
+
+                        <span class="text-[12px] lg:text-[16px]">خوش اومدی :)</span>
+
+                    </div>
+
+                    <!-- The <div> for form -->
+                    <div class="relative w-full">
+                        
+                        <!-- JS Note : The label's location must change location & And color upon clicking the input tag  -->
+                        <label for="phone_number" class="absolute abs_verticalCenter right-4
+                        text-[#9c9d9e]">شماره موبایل خود را وارد کنید</label>
+
+                        <!-- The form -->
+                        <input id="phone_number" type="text" class="pr-4 pl-4 text-[#000]
+                        h-[46px] lg:h-[56px] w-full
+                        border border-[#d7dee0] focus:border-[#00a3ff] rounded-[0.5rem] 
+                        focus:outline-[2px] focus:outline-offset-2 focus:outline-[#57c1ff] caret-[#00a3ff]">
+                        
+                    </div>
+                
+                </div>
+                
+    
+            </div>
+    
+            <!-- Bottom -->
+            <div class="pb-4 w-full flex flex-col gap-4">
+                <input type="submit" value="ادامه" class="w-full h-[44px] lg:h-[56px]
+                text-white lg:text-[14px] text-[12px] leading-4 font-medium bg-deep_blue rounded-[0.5rem]
+                flex center">
+                <span class="text-[#666666] text-[14px] lg:text-[12px]">ورود | ثبت نام شما به معنای پذیرش  
+                    <a href="#" class="text-[#14a0de]">قوانین و مقررات</a>
+                    و
+                    <a href="#" class="text-[#14a0de]">حریم خصوصی کاربران</a>
+                    تکنولایف است.
+                </span>
+            </div>
+            
+        </form>   
+    </section>
+      
+
+</body>
+</html>

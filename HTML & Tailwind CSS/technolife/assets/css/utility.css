@@ -1,0 +1,83 @@
+.full_container {
+    @apply pt-[12px] pr-[16px] pb-[12px] pl-[16px];
+}
+
+.center {
+    @apply justify-center items-center;
+}
+
+#productTypesSwiper {
+    position: relative;
+}
+
+.center_abs {
+    @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%];
+}
+
+.abs_verticalCenter {
+    @apply top-[50%] translate-y-[-50%];
+}
+
+.abs_horizantalCenter {
+    @apply left-[50%] translate-x-[-50%];
+}
+  
+.product_typeBox {
+    @apply w-[121.42px] h-[114px] lg:w-[auto] lg:h-[172px] lg:pr-[23px] lg:pl-[23px];
+}
+
+.children-border-grey li {
+    @apply border border-[#d3d8e4]; /* or your preferred grey color */
+}
+
+.headline {
+    @apply text-[#333] font-semibold;
+}
+
+.explaination {
+    @apply text-sm font-semibold leading-8 text-[#5f5f5f]
+}
+
+.undenied_disappear {
+
+    @apply hidden !important;
+
+}
+
+.undenied_appear {
+
+    @apply flex !important;
+
+}
+
+.undenied_overflowStop {
+    @apply overflow-hidden !important;
+}
+
+.swiper_sliderFixer{
+
+    @apply h-[auto] w-[auto] !important;
+
+}
+
+/* For removing the automatic style */
+.swiper-button-next,
+.swiper-button-prev {
+  height: 20px !important;
+  width: 20px !important;
+  margin: 0 !important; 
+}
+
+.swiper-button-next svg,
+.swiper-button-prev svg {
+  height: 16px !important;
+  width: 16px !important;
+}
+
+/* For removing the automatic icon */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: none !important;
+  height: auto !important;
+  width: auto !important;
+}

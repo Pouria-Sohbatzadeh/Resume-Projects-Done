@@ -1,0 +1,1 @@
+The way the game must be played is explained in the pig-game-flowchat image.
